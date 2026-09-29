@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: ruff check .
+      - run: pytest -q
+
+  eval:
+    needs: lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Eval gate
+        run: python eval_prompts.py --golden evals/golden.jsonl --threshold 0.85
+        env:
+          PROMPT_VERSION: "1.2.0"
+
+  mcp-health:
+    needs: eval
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: MCP health gate (stdio handshake)
+        run: python scripts/check_mcp_health.py
+
+  deploy-stub:
+    needs: mcp-health
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and tag image
+        run: |
+          docker build -t afyaplus-triage:1.2.0 .
+          docker images afyaplus-triage:1.2.0
+      - name: Record image id
+        run: docker inspect --format='{{.Id}}' afyaplus-triage:1.2.0 | tee image_digest.txt
+
+  retrain-stub:
+    needs: mcp-health
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python scripts/retrain_stub.py

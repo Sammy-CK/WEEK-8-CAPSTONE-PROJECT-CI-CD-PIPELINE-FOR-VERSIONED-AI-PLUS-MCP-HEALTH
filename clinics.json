@@ -1,0 +1,26 @@
+[
+  {
+    "id": "kisumu-central",
+    "name": "Kisumu Central",
+    "stock": {"amoxicillin": 40, "ors_sachets": 120, "malaria_kits": 55},
+    "reorder_level": 10
+  },
+  {
+    "id": "vihiga",
+    "name": "Vihiga Clinic",
+    "stock": {"amoxicillin": 8, "ors_sachets": 45, "malaria_kits": 6},
+    "reorder_level": 10
+  },
+  {
+    "id": "mombasa-coast",
+    "name": "Mombasa Coast",
+    "stock": {"amoxicillin": 25, "ors_sachets": 80, "malaria_kits": 30},
+    "reorder_level": 10
+  },
+  {
+    "id": "nakuru-town",
+    "name": "Nakuru Town",
+    "stock": {"amoxicillin": 5, "ors_sachets": 60, "malaria_kits": 12},
+    "reorder_level": 10
+  }
+]

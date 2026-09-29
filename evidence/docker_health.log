@@ -1,0 +1,14 @@
+GET http://127.0.0.1:8000/health (container afyaplus-triage:1.2.0)
+
+{
+  "status": "ok",
+  "service": "afyaplus-triage",
+  "prompt_version": "1.2.0",
+  "prompt_sha256": "079e4fe811f836ce288ae4b227e45466b77d6c98b9ad3476f2b3342c6d1b0331",
+  "model": "gpt-4o-mini",
+  "model_version": "2026.09-stub",
+  "mcp_server_version": "1.1.0",
+  "image_tag": "afyaplus-triage:1.2.0"
+}
+
+Matches prompts/pin.json.

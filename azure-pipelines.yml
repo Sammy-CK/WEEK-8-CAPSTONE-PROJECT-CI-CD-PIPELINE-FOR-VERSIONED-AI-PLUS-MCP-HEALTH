@@ -1,0 +1,42 @@
+# Config-as-code twin (apply on Azure DevOps if available)
+trigger:
+  - main
+pr:
+  - main
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: CI
+    jobs:
+      - job: lint_test
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: pip install -r requirements.txt && ruff check . && pytest -q
+            displayName: Lint and pytest
+      - job: eval
+        dependsOn: lint_test
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: pip install -r requirements.txt
+          - script: python eval_prompts.py --golden evals/golden.jsonl --threshold 0.85
+            displayName: Eval gate
+            env:
+              PROMPT_VERSION: "1.2.0"
+      - job: mcp_health
+        dependsOn: eval
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: pip install -r requirements.txt && python scripts/check_mcp_health.py
+            displayName: MCP health gate
+      - job: deploy_stub
+        dependsOn: mcp_health
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+        steps:
+          - script: docker build -t afyaplus-triage:1.2.0 .
+            displayName: Docker build stub

@@ -1,0 +1,5 @@
+{"id": "g001", "expected_urgency": "low", "must_include": ["rest"], "must_not": ["emergency room"]}
+{"id": "g002", "expected_urgency": "high", "must_include": ["urgent"], "must_not": ["fine to wait"]}
+{"id": "g003", "expected_urgency": "medium", "must_include": ["clinic"], "must_not": ["ignore"]}
+{"id": "g004", "expected_urgency": "low", "must_include": ["fluids"], "must_not": ["prescription"]}
+{"id": "g005", "expected_urgency": "high", "must_include": ["seek"], "must_not": ["home only"]}

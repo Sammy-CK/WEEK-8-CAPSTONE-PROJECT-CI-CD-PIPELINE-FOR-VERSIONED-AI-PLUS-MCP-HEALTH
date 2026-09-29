@@ -1,0 +1,24 @@
+{
+  "by_id": {
+    "g001": {
+      "expected_urgency": "low",
+      "text": "Low urgency. Rest at home and drink fluids. Monitor symptoms."
+    },
+    "g002": {
+      "expected_urgency": "high",
+      "text": "High urgency. Seek urgent care now. Difficulty breathing needs immediate help."
+    },
+    "g003": {
+      "expected_urgency": "medium",
+      "text": "Medium urgency. Visit a clinic within 24 hours for assessment."
+    },
+    "g004": {
+      "expected_urgency": "low",
+      "text": "Low urgency. Rest and fluids are appropriate. Self-care and monitoring are enough."
+    },
+    "g005": {
+      "expected_urgency": "high",
+      "text": "High urgency. Seek emergency services. Do not delay care at home."
+    }
+  }
+}

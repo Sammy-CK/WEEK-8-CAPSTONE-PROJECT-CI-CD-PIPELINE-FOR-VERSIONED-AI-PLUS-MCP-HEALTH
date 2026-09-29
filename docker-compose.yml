@@ -1,0 +1,8 @@
+services:
+  triage:
+    build: .
+    image: afyaplus-triage:1.2.0
+    ports:
+      - "8000:8000"
+    environment:
+      PROMPT_VERSION: "1.2.0"
