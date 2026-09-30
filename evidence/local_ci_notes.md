@@ -15,8 +15,7 @@ All gates reproduced locally on Windows (2026-09-29).
 
 ## GitHub Actions
 
-After push, add green run URL:
+- Green CI (all jobs): https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions/runs/36716941727
+- Failed CI before MCP pin fix: https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions/runs/36578912083
 
-- https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions
-
-Tag **`v1.2.0`** on the commit that passed CI on `main`.
+Tag **`v1.2.0`** on commit `a84caba` after README update.
