@@ -21,7 +21,7 @@ Runtime evidence: `GET /health` on `prompt_app.py` (also `evidence/docker_health
 
 - **Workflow:** `.github/workflows/ci.yml` (on `pull_request`, `push` to `main`, `workflow_dispatch`)
 - **Twin:** `azure-pipelines.yml`
-- **Green CI run (all jobs):** https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions/runs/36716941727
+- **Green CI run (all jobs, incl. deploy-stub):** https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions/runs/36718170311
 - **Failed run (MCP 2.x, fixed by pin):** https://github.com/Sammy-CK/WEEK-8-CAPSTONE-PROJECT-CI-CD-PIPELINE-FOR-VERSIONED-AI-PLUS-MCP-HEALTH/actions/runs/36578912083
 
 | Stage | Job | Command |
@@ -78,7 +78,7 @@ Repo layout matches the capstone brief (`prompts/`, `config/`, `evals/`, `.githu
 - [x] MCP health in pipeline (before deploy-stub)
 - [x] Runbook, Definition of Done, clinical brief, governance note
 - [x] GitHub Actions green run link in Pipeline section
-- [ ] Git tag `v1.2.0` on `a84caba` (or latest on `main`) and pushed
+- [x] Git tag `v1.2.0` on `main` (commit `81a6b39`)
 
 ## Author
 
